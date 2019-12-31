@@ -350,7 +350,19 @@
     print(sess.run(a))
   ```
 
-  
+
+
+**Regression with Neural Network**
+
+![image-20191230135232461](/Users/chaeyoon/Documents/GitHub/AI_Image/part5/image/image-20191230135232461.png)
+
+- Network + Cost Function + Optimizer
+
+
+
+**Placeholders**
+
+- 계산 그래프를 실행할 때 사용자가 실제 데이터를 흘려보낼 수 있는 통로
 
 ## 5. Tensorflow - Classification
 
