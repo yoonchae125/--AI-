@@ -202,7 +202,7 @@
 
 ##### Support Vector Machine (SVM)
 
-![SVM](/Users/chaeyoon/Documents/GitHub/AI_Image/part4/image/SVM.png)
+![SVM](image/SVM.png)
 
 - 패턴 인식을 위한 지도 학습 모델, 분류 뿐만 아니라 회귀에도 활용할 수 있음
 - Margin을 최대화하는 결정 경계면을 찾는 기법
@@ -218,7 +218,7 @@
 
 ##### Kernel Support Vector Machines
 
-![image-20191231201645047](/Users/chaeyoon/Desktop/KSVM.png)
+![KSVM](/Users/chaeyoon/Documents/GitHub/AI_Image/part4/image/KSVM.png)
 
 - 데이터가 선형적으로 분리되지 않을 경우
 - Original data가 놓여있는 차원을 비선형 매칭을 통해 고차원 공간으로 변환하는 것으로 해결
@@ -243,7 +243,7 @@
 
     1. AdaBoost (Adaptive Boosting)
 
-       ![image-20191231202222978](/Users/chaeyoon/Documents/GitHub/AI_Image/part4/image/AdaBoost.png)
+       ![image-20191231202222978](image/AdaBoost.png)
 
        - 데이터를 바탕으로 weak learner들을 반복적으로 생성(iterate)
        - 매번 앞선 learner가 잘못 예측한 데이터에 가중치를 부여하고 (boosting) 학습
@@ -258,3 +258,111 @@
     3. XG Boost
 
        - 병렬 처리 기법으로 Gradien Boost보다 학습 속도를 크게 끌어올림
+
+### 4. 머신러닝 알고리즘 실습 with Scikit-learn
+
+**scikit-learn**
+
+- Python으로 Traditional Machine Learning 알고리즘들을 구현한 오픈 소스 라이브러리
+- 장점
+  - 파이썬의 다른 라이브러리들과의 호환성이 좋은 (Numpy, Pandas, Matplotlib,,,)
+  - 전체에 걸쳐 통일된 인터페이스를 가지고 있기 때문에 매우 간단하게 여러 알고리즘들을 적용할 수 있음
+
+
+
+**Scikit-learn 라이브러리를 활용한 실습**
+
+1. 데이터셋 불러오기
+
+   ```python
+   import numpy as np
+   from sklearn import datasets
+   
+   iris_data = datasets.load_iris()
+   
+   x_data = iris_data.data
+   y_data = iris_data.target
+   ```
+
+   
+
+2. Train / Test set으로 데이터 나누기
+
+   ```python
+   from sklearn.model_selection import train_test_split
+   
+   x_train, x_test, y_train, y_test = train_test_split(x_data, y_data, test_size=0.3, random_state = 7)
+   ```
+
+   
+
+3. 모델 객체 (Model Instance) 생성하기
+
+   ```python
+   from sklearn.linear_model import LogisticRegression
+   
+   model = LogisticRegression()
+   ```
+
+   
+
+4. 모델 학습 시키기 (Model fitting)
+
+   ```python
+   model.fit(x_train, y_train)
+   ```
+
+   
+
+5. 모델의 새로운 데이터 예측하기 (Predict on test data)
+
+   ```python
+   from sklearn.metrics import accuracy_score
+   
+   y_pred = model.predict(x_test) #예측값
+   print('Accuracy: ', accuracy_score(y_pred, y_test)) #예측값과 정답 비교해서 정확도 계산
+   ```
+
+   
+
+**모델 평가하기**
+
+- 정확성 = (참긍정 + 참부정) / 총 테스트
+
+- ROC Curve (Receiver operation characteristic Curve)
+
+  ![ROC_Curve](image/ROC_Curve.png)
+
+  - Classification에서 사용가능
+
+
+
+**K-Nearest Neighbor Algorithm**
+
+- K-최근접이웃 알고리즘
+- 기존의 가까운 이웃 데이터를 살펴 새로운 데이터를 분류하는 알고리즘
+
+
+
+**K-Means Algorithm**
+
+1. K개의 임의의 중심값을 고른다.
+2. 각 데이터마다 중심값까지의 거리를 계산하여 가까운 중심값의 클러스터에 할당한다.
+3. 각 클러스터에 속한 데이터들의 평균값으로 각 중심값을 이동시킨다.
+4. 데이터에 대한 클러스터 할당이 변하지 않을 때까지 2와 3을 반복한다.
+
+
+
+**PCA Algorithm**
+
+- 차원 축소를 통해 최소 차원의 정보로 원래 차원의 정보를 모사하는 알고리즘
+- 차원 축소 : 고차원 벡터에서 일부 차원의 값을 모두 0으로 만들어 저차원 벡터로 줄이는 것
+- 원래 고차원 벡터의 특성을 최대한 살리기 위해 가장 분산이 높은 방향으로 회전 변환을 진행
+
+
+
+
+
+**ML 알고리즘 선택 가이드**
+
+![image-20200102162620031](image/선택가이드.png)
