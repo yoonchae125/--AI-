@@ -112,7 +112,7 @@
 
     - **교차 검증 (Cross validation)**
 
-    ![교차검증](image/교차검증.png)
+    ![교차검증](./image/교차검증.png)
 
     - **K-Fold cross validation**
     - **Drop-out & Batch Normalization**
