@@ -14,9 +14,13 @@ from keras.layers import Dense
 
 model = Sequential()
 model.add(Dense(5, input_dim=1))
+model.add(Dense(2))
 model.add(Dense(3))
 model.add(Dense(1))
 
+model.summary()
+
+'''
 # 3.훈련
 model.compile(loss='mse', optimizer='adam',
             #    metrics=['acc'])
@@ -41,3 +45,4 @@ print(aaa)
 
 bbb = model.predict(x, batch_size=1)
 print(bbb)
+'''
