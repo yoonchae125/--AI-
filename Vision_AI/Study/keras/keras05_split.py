@@ -1,8 +1,15 @@
-
 #1. 데이터
 import numpy as np
-x=np.array([1,2,3,4,5,6,7,8,9,10])
-y=np.array([1,2,3,4,5,6,7,8,9,10])
+
+x = np.array(range(1,101))
+y = np.array(range(1,101))
+
+x_train = x[:60]
+y_train = y[:60]
+x_test = x[60:80]
+y_test = y[60:80]
+x_val = x[80:]
+y_val = y[80:]
 
 # print(x.shape)
 # print(y.shape)
@@ -22,7 +29,7 @@ model.add(Dense(1))
 
 model.summary()
 
-'''
+
 # 3.훈련
 model.compile(loss='mse', optimizer='adam',
             #    metrics=['acc'])
@@ -32,19 +39,15 @@ model.compile(loss='mse', optimizer='adam',
 # optimizer : 최적화 - 보통 adam 사용
 # metrics=['acc'] : 결과를 acc로 보여줌, 손실률(loss) 다음에 무엇을 보여줄 것인가?
 # **회귀 문제에서는 'mae','mse' 사용, 'acc' 사용 안함!
-model.fit(x,y, epochs=200, batch_size=1)
+model.fit(x_train,y_train, epochs=200, batch_size=1,validation_data=(x_val, y_val))
 # ecpoch : 반복 횟수
 
 # 4. 평가 예측
-loss, acc = model.evaluate(x,y, batch_size=1)
+loss, acc = model.evaluate(x_test,y_test, batch_size=1)
 # loss, mse = model.evaluate(x,y, batch_size=1)
 print('loss: ', loss)
 print('acc: ', acc)
 
-x_pred = np.array([11,12,13])
+x_pred = np.array([101,102,103])
 aaa = model.predict(x_pred, batch_size=1)
 print(aaa)
-
-bbb = model.predict(x, batch_size=1)
-print(bbb)
-'''
