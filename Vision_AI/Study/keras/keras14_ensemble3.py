@@ -29,23 +29,25 @@ from keras.layers import Dense, Input
 
 # 함수형 모델
 input1 = Input(shape=(3,))
-dense1 = Dense(5)(input1)
-dense2 = Dense(3)(dense1)
-output1 = Dense(4)(dense2)
+dense1 = Dense(64)(input1)
+dense2 = Dense(32)(dense1)
+output1 = Dense(16)(dense2)
 
 
 # 모델 분기
 # 1번째 아웃풋 모델
-output_1 = Dense(2)(output1)
+output_1 = Dense(32)(output1)
+output_1 = Dense(16)(output_1)
 output_1 = Dense(3)(output_1)
 
 # 2번째 아웃풋 모델
-output_2 = Dense(4)(output1)
-output_2 = Dense(4)(output_2)
+output_2 = Dense(16)(output1)
+output_2 = Dense(8)(output_2)
 output_2 = Dense(3)(output_2)
 
 # 3번째 아웃풋 모델
-output_3 = Dense(5)(output1)
+output_3 = Dense(32)(output1)
+output_3 = Dense(16)(output_3)
 output_3 = Dense(3)(output_3)
 
 model = Model(inputs = input1, outputs = [output_1, output_2, output_3])
@@ -61,7 +63,7 @@ model.compile(loss='mse', optimizer='adam',
 # optimizer : 최적화 - 보통 adam 사용
 # metrics=['acc'] : 결과를 acc로 보여줌, 손실률(loss) 다음에 무엇을 보여줄 것인가?
 # **회귀 문제에서는 'mae','mse' 사용, 'acc' 사용 안함!
-model.fit(x1_train,[y1_train,y2_train,y3_train], epochs=50, batch_size=1,validation_data=(x1_val, [y1_val,y2_val,y3_val]))
+model.fit(x1_train,[y1_train,y2_train,y3_train], epochs=200, batch_size=1,validation_data=(x1_val, [y1_val,y2_val,y3_val]))
 # ecpoch : 반복 횟수
 
 # 4. 평가 예측
