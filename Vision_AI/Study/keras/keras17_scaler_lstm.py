@@ -20,7 +20,7 @@ y_test = y[10:14]
 #사용법: 정의 -> fitting -> transform
 scaler = StandardScaler()
 scaler.fit(x_train)
-x_train = scaler.transform(x_train)
+x_train = scaler.transform(x_train) # (3,1) => (1, 3)
 x_test = scaler.transform(x_test)
 
 scaler = MinMaxScaler()

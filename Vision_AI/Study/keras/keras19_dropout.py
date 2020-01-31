@@ -16,7 +16,7 @@ x = x.reshape(x.shape[0], x.shape[1], 1) # x를 (5,3,1)로 reshape - 뒤에 몇 
 model = Sequential()
 model.add(LSTM(10, activation = 'relu', return_sequences=True, input_shape=(3,1))) # input_shape(열, 몇 개씩 자르는지) #(3,1): 열이 3개고 데이터 셋을 1개씩 잘라서 작업
 model.add(Dense(100))
-model.add(Dropout(0.2))
+model.add(Dropout(0.2)) # 데이터의 0.2 만큼 버림
 model.add(Dense(100)) #batchnormalization이 적용되어 다음 연산이 더 잘되게!
 model.add(BatchNormalization()) #BatchNormalization (정규화) - 가중치들의 값이 계산을 할 때마다 예쁘게 되어 있는 것이 아니라 흩어져 있음 
                                 #우리가 standardScaler를 했을 때 한 군데로 이쁘게 모아줌 이것처럼 가중치를 예쁘게 정리해서 다음에 넘겨주면 더 좋은 결과를 얻을 수 있을 것임
