@@ -79,7 +79,12 @@ model.compile(loss='mse', optimizer='adam',
 # optimizer : 최적화 - 보통 adam 사용
 # metrics=['acc'] : 결과를 acc로 보여줌, 손실률(loss) 다음에 무엇을 보여줄 것인가?
 # **회귀 문제에서는 'mae','mse' 사용, 'acc' 사용 안함!
-model.fit([x1_train,x2_train],[y1_train,y2_train,y3_train], epochs=50, batch_size=1,validation_data=([x1_val,x2_val], [y1_val,y2_val,y3_val]))
+from keras.callbacks import EarlyStopping, TensorBoard
+tb_hist = TensorBoard(log_dir='./graph',
+                      histogram_freq=0,
+                      write_graph=True,
+                      write_images=True )
+model.fit([x1_train,x2_train],[y1_train,y2_train,y3_train], epochs=50, batch_size=1,validation_data=([x1_val,x2_val], [y1_val,y2_val,y3_val]),callbacks=[tb_hist])
 # ecpoch : 반복 횟수
 
 

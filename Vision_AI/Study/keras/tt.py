@@ -1,1 +1,0 @@
-from tensorflow.contrib.tensorboard.plugins import projector
